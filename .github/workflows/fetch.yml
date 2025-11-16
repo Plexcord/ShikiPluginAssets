@@ -1,0 +1,33 @@
+name: Fetch and Commit
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: 0 0 1 * *
+
+env:
+    FORCE_COLOR: true
+
+permissions:
+    contents: write
+
+jobs:
+    Build:
+        name: Fetch and Commit
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Use Node.js 20
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+
+            - name: Run Script
+              run: |
+                node index.js
+                git config --global user.name "GitHub-Actions"
+                git config --global user.email actions@github.com
+                git add *.json
+                git diff --cached --quiet || git commit -m "Update JSON files from CI"
+                git push

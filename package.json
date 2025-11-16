@@ -1,0 +1,8 @@
+{
+    "private": "true",
+    "license": "MIT",
+    "author": "thororen1234",
+    "scripts": {
+        "fetch": "node index.js"
+    }
+}
