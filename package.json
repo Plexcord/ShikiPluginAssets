@@ -3,6 +3,6 @@
     "license": "MIT",
     "author": "thororen1234",
     "scripts": {
-        "fetch": "node index.js"
+        "build": "node build.js"
     }
 }
